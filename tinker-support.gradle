@@ -15,7 +15,7 @@ userFlavor = hasFlavor ? userFlavor : true
 
 def hasprotectedApp = projects.hasProperty('protectedApp')
 def protectedApp = project.properties['protectedApp']
-protectedApp = hasprotectedApp ? protectedApp : true
+protectedApp = hasprotectedApp ? protectedApp : false
 /**
  * 对于插件各参数的详细解析请参考
  */
