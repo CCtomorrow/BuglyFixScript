@@ -8,6 +8,9 @@ def bakPath = file("${projectDir}/bakApk/")
  */
 //def baseApkDir = "app-0515-18-49-52"
 def baseApkDir = project.properties['baseApkDir']
+def hasFlavor = projects.hasProperty('userFlavor')
+def userFlavor = project.properties['userFlavor']
+userFlavor = hasFlavor ? userFlavor : true
 /**
  * 对于插件各参数的详细解析请参考
  */
@@ -47,7 +50,9 @@ tinkerSupport {
     // tinkerId = "base-1.0.0-3"
 
     // 构建多渠道补丁时使用，如果不需要构建多渠道包，就算productFlavors没有配置，这个也要注释啦
-    buildAllFlavorsDir = "${bakPath}/${baseApkDir}"
+    if (userFlavor) {
+        buildAllFlavorsDir = "${bakPath}/${baseApkDir}"
+    }
 
     // 是否开启加固模式，默认为false
     // 因为我们渠道有360渠道，所以需要加固
