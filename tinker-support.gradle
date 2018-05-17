@@ -8,9 +8,14 @@ def bakPath = file("${projectDir}/bakApk/")
  */
 //def baseApkDir = "app-0515-18-49-52"
 def baseApkDir = project.properties['baseApkDir']
+
 def hasFlavor = projects.hasProperty('userFlavor')
 def userFlavor = project.properties['userFlavor']
 userFlavor = hasFlavor ? userFlavor : true
+
+def hasprotectedApp = projects.hasProperty('protectedApp')
+def protectedApp = project.properties['protectedApp']
+protectedApp = hasprotectedApp ? protectedApp : true
 /**
  * 对于插件各参数的详细解析请参考
  */
@@ -56,7 +61,7 @@ tinkerSupport {
 
     // 是否开启加固模式，默认为false
     // 因为我们渠道有360渠道，所以需要加固
-    isProtectedApp = true
+    isProtectedApp = protectedApp
 
     // 是否采用反射Application的方式集成，这样我们就不需要再去使用我们的application继承tinker的application
     enableProxyApplication = true
